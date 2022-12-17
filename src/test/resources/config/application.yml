@@ -13,9 +13,19 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
+eureka:
+  client:
+    enabled: false
+  instance:
+    appname: walea
+    instanceId: walea:${spring.application.instance-id:${random.value}}
+
 spring:
   application:
-    name: blog
+    name: walea
+  cloud:
+    config:
+      enabled: false
   # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
   liquibase:
     contexts: test
@@ -26,20 +36,17 @@ spring:
     host: localhost
   main:
     allow-bean-definition-overriding: true
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
   messages:
     basename: i18n/messages
   task:
     execution:
-      thread-name-prefix: blog-task-
+      thread-name-prefix: walea-task-
       pool:
         core-size: 1
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: blog-scheduling-
+      thread-name-prefix: walea-scheduling-
       pool:
         size: 20
   thymeleaf:
@@ -56,9 +63,9 @@ server:
 # ===================================================================
 jhipster:
   clientApp:
-    name: 'blogApp'
+    name: 'waleaApp'
   mail:
-    from: blog@localhost.com
+    from: walea@localhost.com
     base-url: http://127.0.0.1:8080
   logging:
     # To test json console appender
@@ -72,7 +79,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
-        base64-secret: YWI2ZTMxYzc4MWM3OGZlYTRiNDkwNzhlMGVjZmZkY2NlMGRiMTAyOTQxOGZhNmIxZGI4OWZkYWMzNWIzZDdjOWYxYjI0ZTg1ZTJmOTc4MjM4MTBhNWM2NjRiMDJkYTQ5NzU0MTYzOWM2YjJmYjI3OTQyNzJmOGE2ZWJhOTBjYzQ=
+        base64-secret: ZjM3NGI1NmViMjg2MjBjYTQ3MjRkZjhhN2MyZDUyY2I2ZDY3MTNmMWYzNmIxNDVlYzBjMzExNDEwYmQxNGZkZWNhNTI3NjBmNDAwNGU5Njk5NTNiOWY0ZGQyNDJmYTlkYzAxODY0Y2U2YmU5ODU3NGE5YjcxZTc1NGVmNTRkMzU=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
 
