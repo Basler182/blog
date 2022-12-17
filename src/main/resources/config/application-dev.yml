@@ -52,7 +52,7 @@ spring:
       enabled: false
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
-    contexts: dev, faker
+    contexts: dev
     url: jdbc:h2:file:./target/h2db/db/walea;DB_CLOSE_DELAY=-1;MODE=LEGACY
   mail:
     host: localhost
